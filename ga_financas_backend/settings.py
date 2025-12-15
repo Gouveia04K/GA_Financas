@@ -56,15 +56,25 @@ ROOT_URLCONF = 'ga_financas_backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # MUDANÇA 1: Apontando para a pasta templates na raiz
-        'DIRS': [BASE_DIR / 'templates'],
-        'APP_DIRS': True,
+        # DIRS está correto, aponta para a pasta templates na raiz
+        'DIRS': [BASE_DIR / 'templates'], 
+        
+        # O PONTO CRÍTICO: MUDAR PARA FALSE. 
+        # Com sua estrutura (templates na raiz), o APP_DIRS=True faz o Django ignorar o DIRS e procurar em 'contas/templates' (onde não está).
+        'APP_DIRS': False, 
+        
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+            ],
+            
+            # Adicione 'loaders' para garantir que ele use o DIRS configurado.
+            'loaders': [
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
             ],
         },
     },
