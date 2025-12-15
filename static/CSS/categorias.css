@@ -1,0 +1,409 @@
+/* ============================================
+   CATEGORIAS - ESTILOS GERAIS
+   ============================================ */
+
+/* As variáveis são herdadas do dashboard.css */
+
+.categorias-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.form-card, .list-card {
+    background: var(--box-color); /* Adaptável */
+    padding: 24px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.02);
+    transition: background 0.3s ease;
+    height: fit-content;
+}
+
+.form-card h2, .list-card h2 {
+    margin-bottom: 20px;
+    color: var(--dark); /* Adaptável */
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* ============================================
+   FORMULÁRIO
+   ============================================ */
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-row.full {
+    grid-template-columns: 1fr;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    color: var(--dark); /* Adaptável */
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 12px;
+    border: 1px solid var(--border-color); /* Borda sutil */
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    background: var(--input-bg); /* Fundo adaptável */
+    color: var(--dark); /* Texto adaptável */
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--blue);
+    background: var(--box-color);
+    box-shadow: 0 0 0 3px rgba(60, 145, 230, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* ============================================
+   SELEÇÃO DE ÍCONES
+   ============================================ */
+
+.icones-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.icone-btn {
+    background: var(--input-bg); /* Adaptável */
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 24px;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dark-grey);
+}
+
+.icone-btn:hover {
+    background: var(--grey);
+    border-color: var(--blue);
+    color: var(--dark);
+}
+
+.icone-btn.selected {
+    background: var(--blue);
+    color: white;
+    border-color: #2a6bb8;
+    box-shadow: 0 4px 10px rgba(60, 145, 230, 0.3);
+}
+
+/* ============================================
+   BOTÕES DO FORMULÁRIO
+   ============================================ */
+
+.btn-primary, 
+.btn-secondary {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    width: 100%;
+    font-size: 14px;
+}
+
+.btn-primary {
+    background: var(--blue);
+    color: white !important;
+    margin-bottom: 10px;
+}
+
+.btn-primary:hover {
+    background: #2a6bb8;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: var(--grey); /* Adaptável */
+    color: var(--dark);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background: var(--light-blue);
+    color: var(--blue);
+    border-color: var(--blue);
+}
+
+/* ============================================
+   MENSAGENS DA API
+   ============================================ */
+
+.api-message {
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.api-message.success {
+    background: var(--light-green);
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.api-message.error {
+    background: var(--light-red);
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* ============================================
+   LISTA DE CATEGORIAS (GRID) & BUSCA
+   ============================================ */
+
+/* Header Flexível */
+.header-com-busca {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.header-com-busca h2 {
+    margin-bottom: 0 !important;
+    color: var(--dark);
+    font-size: 18px;
+}
+
+/* Busca Mini */
+.search-box-mini {
+    background: var(--input-bg); /* Adaptável */
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 200px;
+    transition: all 0.3s;
+}
+
+.search-box-mini:focus-within {
+    border-color: var(--blue);
+    background: var(--box-color);
+    box-shadow: 0 0 0 3px rgba(60, 145, 230, 0.1);
+}
+
+.search-box-mini input {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    font-size: 14px;
+    color: var(--dark);
+}
+
+.search-box-mini i {
+    color: var(--dark-grey);
+}
+
+
+/* GRID */
+.categorias-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+/* Card Individual */
+.categoria-item {
+    background: var(--grey); /* Diferencia do fundo do container */
+    padding: 20px;
+    border-radius: 12px;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+    display: flex;
+    flex-direction: column; 
+    border: 1px solid transparent;
+}
+
+.categoria-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border-color: var(--border-color);
+}
+
+.categoria-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.categoria-header i {
+    font-size: 24px;
+    color: var(--dark);
+}
+
+.categoria-info {
+    flex: 1;
+}
+
+.categoria-info h3 {
+    margin: 0;
+    color: var(--dark);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.categoria-tipo {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.categoria-tipo.receita {
+    background: var(--light-green);
+    color: #155724; /* Verde escuro fixo para leitura */
+}
+
+.categoria-tipo.despesa {
+    background: var(--light-red);
+    color: #721c24; /* Vermelho escuro fixo para leitura */
+}
+
+.categoria-descricao {
+    color: var(--dark-grey);
+    font-size: 13px;
+    margin: 10px 0;
+    flex-grow: 1; 
+    line-height: 1.4;
+}
+
+/* ============================================
+   AÇÕES DOS CARDS (Editar / Deletar)
+   ============================================ */
+
+.categoria-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 15px;
+}
+
+.btn-edit, 
+.btn-delete {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: background 0.3s;
+    flex: 1; 
+    font-weight: 500;
+}
+
+.btn-edit {
+    background: var(--yellow);
+    color: #333 !important; /* Texto escuro para contraste */
+}
+
+.btn-edit:hover {
+    background: #e5b822;
+}
+
+.btn-delete {
+    background: transparent;
+    border: 1px solid var(--red);
+    color: var(--red);
+}
+
+.btn-delete:hover {
+    background: var(--red);
+    color: white !important;
+}
+
+.categoria-item-placeholder {
+    text-align: center;
+    padding: 40px;
+    color: var(--dark-grey);
+}
+
+/* ============================================
+   RESPONSIVO
+   ============================================ */
+
+@media (max-width: 768px) {
+    .categorias-container {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .icones-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .categorias-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .search-box-mini {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .icones-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .categoria-actions {
+        flex-direction: column;
+    }
+}

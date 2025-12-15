@@ -1,0 +1,363 @@
+/* ============================================
+   MEU PERFIL - ESTILOS
+   ============================================ */
+
+/* As variáveis :root e body.dark já estão definidas no dashboard.css.
+   Não precisamos redefini-las aqui para evitar conflitos.
+   Usaremos apenas as variáveis para garantir consistência.
+*/
+
+.profile-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-card,
+.stats-card {
+    background: var(--box-color); /* Adaptável ao tema */
+    padding: 24px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.02);
+    color: var(--dark);
+    margin-bottom: 24px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.profile-card h2,
+.stats-card h2 {
+    margin-top: 0;
+    margin-bottom: 24px;
+    color: var(--dark);
+    font-size: 20px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+}
+
+/* Header Gamificado */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.avatar-wrapper {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 3px solid var(--blue);
+    overflow: hidden;
+    transition: transform 0.2s;
+    background: var(--grey); /* Fundo caso a imagem demore */
+}
+
+.avatar-wrapper:hover { transform: scale(1.05); }
+.avatar-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+
+.edit-overlay {
+    position: absolute; bottom: 0; left: 0; width: 100%;
+    background: rgba(0,0,0,0.6); color: white;
+    text-align: center; font-size: 14px; padding: 5px 0;
+    opacity: 0; transition: opacity 0.2s;
+    font-weight: 500;
+}
+.avatar-wrapper:hover .edit-overlay { opacity: 1; }
+
+.profile-summary { flex: 1; }
+.profile-summary h2 { margin: 0; border: none; padding: 0; font-size: 24px; }
+.gamer-title { font-size: 14px; color: var(--blue); font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 10px; }
+
+/* Barra de Nível */
+.level-container { width: 100%; max-width: 300px; }
+.level-info { 
+    display: flex; 
+    justify-content: space-between; 
+    font-size: 12px; 
+    font-weight: 600; 
+    color: var(--dark-grey); 
+    margin-bottom: 5px; 
+}
+
+.progress-bar-bg { 
+    width: 100%; 
+    height: 10px; 
+    background: var(--grey); 
+    border-radius: 10px; 
+    overflow: hidden; 
+}
+.progress-bar-fill { 
+    height: 100%; 
+    background: linear-gradient(90deg, var(--blue), #5eb1ff); 
+    border-radius: 10px; 
+    width: 0%; 
+    transition: width 0.5s ease-in-out; 
+}
+
+.divider { 
+    border: 0; 
+    height: 1px; 
+    background: var(--border-color); 
+    margin: 20px 0; 
+}
+
+/* Info Grid (Formulário) */
+.profile-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.info-item { display: flex; flex-direction: column; }
+.info-item.full-width { grid-column: 1 / -1; } 
+
+.info-item label { 
+    display: block; 
+    color: var(--dark); 
+    font-size: 13px; 
+    font-weight: 600; 
+    margin-bottom: 8px; 
+}
+
+.info-item input, 
+.info-item textarea {
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    background: var(--input-bg); /* Adaptável */
+    color: var(--dark); /* Adaptável */
+    resize: vertical;
+    transition: border-color 0.3s;
+}
+
+.info-item input:disabled { 
+    background: var(--grey); 
+    color: var(--dark-grey); 
+    cursor: not-allowed; 
+}
+
+.info-item input:focus, 
+.info-item textarea:focus { 
+    outline: none; 
+    border-color: var(--blue); 
+    background: var(--box-color);
+}
+
+/* Ações */
+.profile-actions { display: flex; justify-content: flex-end; }
+
+.btn-save { 
+    background: var(--blue); 
+    color: white; 
+    padding: 12px 30px; 
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    font-weight: 600; 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    transition: 0.3s; 
+    font-size: 14px;
+}
+.btn-save:hover { background: #2a6bb8; transform: translateY(-2px); }
+
+/* SALA DE TROFÉUS */
+.trophy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 15px;
+    justify-items: center;
+}
+
+.trophy-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px 10px;
+    border-radius: 12px;
+    width: 100%;
+    position: relative;
+    transition: transform 0.2s, background 0.3s;
+    cursor: default;
+}
+
+.trophy-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.trophy-item p {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.2;
+}
+
+/* Troféu Bloqueado */
+.trophy-item.locked {
+    opacity: 0.5;
+    filter: grayscale(100%);
+}
+
+/* Troféu Desbloqueado */
+.trophy-item.unlocked {
+    background: var(--grey); /* Destaca levemente no fundo */
+    border: 1px solid var(--border-color);
+}
+.trophy-item.unlocked:hover { 
+    transform: translateY(-5px); 
+    background: var(--light-blue); /* Highlight suave no hover */
+}
+
+/* Cores dos Troféus */
+.trophy-gold { color: #FFD700; }
+.trophy-silver { color: #C0C0C0; }
+.trophy-bronze { color: #CD7F32; }
+.trophy-blue { color: var(--blue); }
+.trophy-purple { color: #9370DB; }
+.trophy-green { color: var(--green-icon); }
+
+/* Tooltip */
+.trophy-item .tooltip {
+    visibility: hidden;
+    width: 140px;
+    background-color: var(--dark); /* Fundo escuro (mesmo no dark mode inverte para claro se usar var(--dark)) */
+    color: var(--box-color); /* Texto contrastante */
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 10;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 8px;
+    font-size: 11px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.trophy-item .tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--dark) transparent transparent transparent;
+}
+
+.trophy-item:hover .tooltip { visibility: visible; opacity: 1; }
+
+/* Modal de Avatar */
+.modal { 
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.5); 
+    backdrop-filter: blur(4px);
+    align-items: center; 
+    justify-content: center; 
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content { 
+    background: var(--box-color); 
+    border-radius: 20px; 
+    padding: 25px; 
+    width: 90%; 
+    max-width: 500px; 
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    animation: slideDown 0.3s ease;
+}
+
+.modal-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 20px; 
+    border-bottom: 1px solid var(--border-color); 
+    padding-bottom: 15px; 
+}
+
+.modal-header h3 { color: var(--dark); font-size: 18px; margin: 0; }
+
+.close-btn { font-size: 24px; cursor: pointer; color: var(--dark-grey); transition: 0.3s; }
+.close-btn:hover { color: var(--red); }
+
+.avatar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 10px 0; }
+.avatar-option { width: 80px; height: 80px; border-radius: 50%; cursor: pointer; border: 3px solid transparent; transition: 0.2s; margin: 0 auto; background: var(--grey); }
+.avatar-option:hover { border-color: var(--blue); transform: scale(1.1); }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideDown { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+
+/* Stats List (Cartões de Estatísticas Laterais) */
+.stats-list { 
+    list-style: none; 
+    padding: 0; 
+    margin: 0; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 15px; 
+}
+
+.stats-list li { 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+    padding: 15px; 
+    background: var(--box-color); /* Adaptável */ 
+    border: 1px solid var(--border-color); /* Borda sutil */
+    border-radius: 12px; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s;
+}
+
+.stats-list li:hover {
+    transform: translateY(-3px); 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+    background: var(--grey); /* Leve destaque no hover */
+}
+
+.stats-icon { font-size: 24px; min-width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+
+/* Cores específicas dos ícones (mantendo consistência) */
+.bx-line-chart.stats-icon { background: var(--light-green); color: var(--green-icon); }
+.bx-line-chart-down.stats-icon { background: var(--light-red); color: var(--red-icon); }
+.bx-wallet.stats-icon { background: var(--light-blue); color: var(--blue); }
+.bx-trophy.stats-icon { background: #E6E6FA; color: #6a5acd; }
+.bx-target-lock.stats-icon { background: var(--light-yellow); color: #d4a000; }
+.bx-list-ul.stats-icon { background: var(--light-orange); color: var(--orange); }
+
+.stat-text h4 { margin: 0 0 4px 0; color: var(--dark-grey); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-text p { margin: 0; font-size: 16px; font-weight: 700; color: var(--dark); }
+
+/* Responsivo */
+@media (max-width: 900px) { 
+    .profile-container { grid-template-columns: 1fr; } 
+    .profile-info-grid { grid-template-columns: 1fr; } 
+    .stats-card { order: -1; /* Em mobile, estatísticas podem vir primeiro ou depois, ajuste conforme gosto */ }
+}

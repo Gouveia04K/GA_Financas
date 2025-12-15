@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <title>Dashboard - GA.Finanças</title>
+    <link rel="stylesheet" href="/CSS/dashboard.css">
+</head>
+
+<body>
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('ga_theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark');
+            }
+        })();
+    </script>
+    
+    <section id="sidebar">
+        <a href="index.html" class="brand"> <span class="text">GA.Finanças</span>
+        </a>
+        
+        <ul class="side-menu top">
+            <li class="active"> 
+                <a href="dashboard.html">
+                    <i class='bx bxs-dashboard' ></i>
+                    <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="receitas.html">
+                    <i class='bx bx-line-chart'></i>
+                    <span class="text">Receitas</span>
+                </a>
+            </li>
+            <li>
+                <a href="despesas.html">
+                    <i class='bx bx-line-chart-down' ></i>
+                    <span class="text">Despesas</span>
+                </a>
+            </li>
+            <li>
+                <a href="metas.html">
+                    <i class='bx bx-target-lock' ></i>
+                    <span class="text">Metas</span>
+                </a>
+            </li>
+            <li>
+                <a href="categorias.html">
+                    <i class='bx bx-list-ul' ></i>
+                    <span class="text">Categorias</span>
+                </a>
+            </li>
+            <li>
+                <a href="meus-dados.html">
+                    <i class='bx bx-bar-chart' ></i>
+                    <span class="text">Meus Dados</span>
+                </a>
+            </li>
+            <li>
+                <a href="profile.html">
+                    <i class='bx bxs-user-circle' ></i>
+                    <span class="text">Meu Perfil</span>
+                </a>
+            </li>
+        </ul>
+
+        <ul class="side-menu">
+            <li>
+                <a href="#" id="logoutBtn" class="logout">
+                    <i class='bx bxs-log-out-circle' ></i>
+                    <span class="text">Sair</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+    <section id="content">
+        <nav>
+            <input type="checkbox" id="theme-switch" hidden>
+                <label for="theme-switch" class="theme-toggle" title="Alternar Tema">
+                    <i class='bx bx-moon'></i>
+                    <i class='bx bx-sun'></i>
+                </label>
+            <i class='bx bx-menu' id="menu-toggler"></i>
+            <a href="#" class="nav-link">Dashboard</a>
+            <form action="#" id="searchForm">
+                <div class="form-input">
+                    <input type="search" placeholder="Buscar..." id="searchInput"> 
+                    <button type="submit" class="search-btn" id="searchButton">
+                        <i class='bx bx-search' id="searchIcon"></i>
+                    </button>
+                </div>
+            </form>
+
+            <a href="profile.html" class="profile">
+                <img src="" id="headerAvatar" alt="Perfil" style="display:none"> </a>
+        </nav>
+        <main>
+            <div class="title">
+                <div class="left">
+                    <h1>Dashboard</h1>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="#">Dashboard</a>
+                        </li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li>
+                            <a class="active" href="#">Página inicial</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="#" class="btn-download">
+                    <i class='bx bxs-cloud-download' ></i>
+                    <span class="text">Download PDF</span>
+                </a>
+            </div>
+            <ul class="box info">
+                <li>
+                    <i class='bx bx-line-chart' ></i>
+                    <div class="text">
+                        <h3 id="totalReceitas">R$ 0,00</h3>
+                        <p>Receitas</p>
+                    </div>
+                </li>
+                <li>
+                    <i class='bx bx-line-chart-down' ></i>
+                    <div class="text">
+                        <h3 id="totalDespesas">R$ 0,00</h3>
+                        <p>Despesas</p>
+                    </div>
+                </li>
+                <li>
+                    <i class='bx bx-credit-card' ></i>
+                    <div class="text">
+                        <h3 id="gastosCartao">R$ 0,00</h3>
+                        <p>Saldo Positivo Atual</p> </div>
+                </li>
+            </ul>
+            <div class="level-card">
+    <div class="level-info">
+        <div class="user-rank">
+            <div class="rank-icon">
+                <i class='bx bxs-crown'></i>
+            </div>
+            <div class="rank-text">
+                <p>Seu Nível Atual</p>
+                <h3 id="userTitle">Iniciante</h3>
+            </div>
+        </div>
+        <div class="level-number">
+            <span id="currentLevel">Nvl 1</span>
+        </div>
+    </div>
+
+    <div class="xp-container">
+        <div class="xp-info">
+            <span id="xpCurrent">0 XP</span>
+            <span id="xpNext">Próximo: 100 XP</span>
+            </div>
+                <div class="xp-bar-bg">
+                <div class="xp-bar-fill" id="xpBar" style="width: 0%;"></div>
+            </div>
+                <p class="xp-message">Registre mais <span id="transacoesRestantes">10</span> transações para subir de nível!</p>
+            </div>
+        </div>
+            <div class="recent-data">
+                <div class="steps-card">
+                    <div class="head">
+                        <h3>Primeiros Passos</h3>
+                    </div>
+                    <p class="subtitle">Complete as tarefas para dominar suas finanças</p>
+                    
+                    <div class="progress-container">
+                        <span class="progress-text" id="progressText">0%</span>
+                        <span class="progress-label">Concluído</span>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" id="progressBar" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                    <ul class="steps-list">
+                        <li id="step-receita">
+                            <i class='bx bx-circle'></i> Cadastrar primeira receita
+                        </li>
+                        <li id="step-despesa">
+                            <i class='bx bx-circle'></i>
+                            Cadastrar primeira despesa
+                        </li>
+                        <li id="step-meta">
+                            <i class='bx bx-circle'></i>
+                            Criar uma meta financeira
+                        </li>
+                        <li id="step-bio">
+                            <i class='bx bx-circle'></i>
+                            Adicionar Biografia ao perfil
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="gamification-grid">
+    
+    <div class="hp-card">
+        <div class="head">
+            <h3>Vida Financeira</h3>
+            <button onclick="definirLimiteGastos()" class="btn-edit-hp" title="Definir Limite de Gastos">
+                <i class='bx bxs-pencil'></i>
+            </button>
+        </div>
+        <div class="hp-container">
+            <div class="heart-icon">
+                <i class='bx bxs-heart' id="heartIcon"></i>
+            </div>
+            <div class="hp-bar-bg">
+                <div class="hp-bar-fill" id="hpBar" style="width: 100%;"></div>
+                <span class="hp-text" id="hpText">100%</span>
+            </div>
+        </div>
+        <p class="hp-status" id="hpStatus">Saudável! Continue assim.</p>
+        <p class="hp-limit">Limite: <span id="limitValue">R$ 0,00</span></p>
+    </div>
+
+    <div class="trophy-card">
+        <div class="head">
+            <h3>Últimas Conquistas</h3>
+            <a href="profile.html" style="font-size: 12px;">Ver todos</a>
+        </div>
+        <div class="trophy-shelf" id="trophyShelf">
+            <p style="font-size: 13px; color: #aaa;">Jogue para desbloquear!</p>
+        </div>
+    </div>
+
+</div>
+
+<div class="chart-card">
+    <div class="head">
+        <h3>Receitas por Categoria</h3>
+    </div>
+    
+    <div class="chart-container" style="position: relative; height: 300px; width: 100%; display: none;" id="chartContainer">
+        <canvas id="receitasChart"></canvas>
+    </div>
+
+    <div class="empty-chart" id="chartPlaceholder">
+        <div class="icon-placeholder">
+            <i class='bx bx-coin-stack'></i>
+        </div>
+        <p>Opa! Você ainda não possui receitas este mês.</p>
+        <p class="subtext">Adicione seus ganhos para ver o gráfico.</p>
+        <a href="receitas.html" class="btn-primary">Adicionar Receita</a>
+    </div>
+</div>
+
+        <div id="hpModal" class="modal-overlay" style="display: none;">
+    <div class="modal-card">
+        <div class="modal-header">
+            <h3>Definir Limite de Gastos</h3>
+            <i class='bx bx-x close-btn' onclick="fecharModalHP()"></i>
+        </div>
+        <p class="modal-desc">Qual é o seu teto de gastos para este mês? Isso definirá a saúde da sua barra de vida.</p>
+        
+        <div class="input-wrapper">
+            <span class="currency-symbol">R$</span>
+            <input type="number" id="newLimitInput" placeholder="Ex: 2000.00">
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-cancel" onclick="fecharModalHP()">Cancelar</button>
+            <button class="btn-save" onclick="salvarNovoLimite()">Salvar Limite</button>
+        </div>
+    </div>
+</div>
+
+            </div>
+            <div class="streak-card">
+                <div class="head">
+                    <h3>Sua Sequência</h3>
+                    <span style="font-size: 12px; color: #aaa;">Acesse diariamente</span>
+                </div>
+                <div class="streak-content">
+                    <div class="streak-icon">
+                        <i class='bx bxs-hot'></i>
+                        <span id="streak-count">1</span>
+                        <p>Dias</p>
+                    </div>
+                    <div class="calendar-days">
+                        <ul class="week-days">
+                            <li>D</li>
+                            <li>S</li>
+                            <li>T</li>
+                            <li>Q</li>
+                            <li>Q</li>
+                            <li>S</li>
+                            <li>S</li>
+                        </ul>
+                        <div class="day-numbers" id="day-numbers-container">
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div id="report-template" style="display: none;">
+    <div class="report-header">
+        <h1>Relatório Financeiro Completo</h1>
+        <p class="report-date">Gerado em: <span id="reportDate"></span></p>
+    </div>
+
+    <div class="report-section summary-section">
+        <h2>Resumo Geral</h2>
+        <div class="summary-cards">
+            <div class="card green">
+                <span>Total Receitas</span>
+                <h3 id="repTotalReceitas">R$ 0,00</h3>
+            </div>
+            <div class="card red">
+                <span>Total Despesas</span>
+                <h3 id="repTotalDespesas">R$ 0,00</h3>
+            </div>
+            <div class="card blue">
+                <span>Saldo Final</span>
+                <h3 id="repSaldo">R$ 0,00</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="report-section chart-section">
+        <h2>Análise Gráfica</h2>
+        <div class="chart-img-container" id="reportChartContainer">
+            </div>
+    </div>
+
+    <div class="report-section">
+        <h2>Detalhamento de Receitas</h2>
+        <table class="report-table">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Descrição</th>
+                    <th>Categoria</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody id="repTableReceitas">
+                </tbody>
+        </table>
+    </div>
+
+    <div class="report-section">
+        <h2>Detalhamento de Despesas</h2>
+        <table class="report-table">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Descrição</th>
+                    <th>Categoria</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody id="repTableDespesas">
+                </tbody>
+        </table>
+    </div>
+
+    <div class="report-section">
+        <h2>Minhas Metas</h2>
+        <div class="goals-list" id="repGoalsList">
+            </div>
+    </div>
+    
+    <div class="report-footer">
+        <p>GA.Finanças - Seu controle financeiro inteligente.</p>
+    </div>
+</div>
+        </main>
+    </section>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../JS/theme.js"></script>
+    <script src="../JS/dashboard.js"></script>
+    
+</body>
+</html>

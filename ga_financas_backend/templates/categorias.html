@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorias - GA.Finanças</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/CSS/dashboard.css">
+    <link rel="stylesheet" href="/CSS/categorias.css">
+</head>
+
+<body>
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('ga_theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark');
+            }
+        })();
+    </script>
+    
+    <section id="sidebar">
+        <a href="dashboard.html" class="brand">
+            <span class="text">GA.Finanças</span>
+        </a>
+        
+        <ul class="side-menu top">
+            <li> 
+                <a href="dashboard.html">
+                    <i class='bx bxs-dashboard' ></i>
+                    <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="receitas.html">
+                    <i class='bx bx-line-chart'></i>
+                    <span class="text">Receitas</span>
+                </a>
+            </li>
+            <li>
+                <a href="despesas.html">
+                    <i class='bx bx-line-chart-down' ></i>
+                    <span class="text">Despesas</span>
+                </a>
+            </li>
+            <li>
+                <a href="metas.html">
+                    <i class='bx bx-target-lock' ></i>
+                    <span class="text">Metas</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="categorias.html">
+                    <i class='bx bx-list-ul' ></i>
+                    <span class="text">Categorias</span>
+                </a>
+            </li>
+            <li>
+                <a href="meus-dados.html">
+                    <i class='bx bx-bar-chart' ></i>
+                    <span class="text">Meus Dados</span>
+                </a>
+            </li>
+            <li>
+                <a href="profile.html">
+                    <i class='bx bxs-user-circle' ></i>
+                    <span class="text">Meu Perfil</span>
+                </a>
+            </li>
+        </ul>
+
+        <ul class="side-menu">
+            <li>
+                <a href="#" id="logoutBtn" class="logout">
+                    <i class='bx bxs-log-out-circle' ></i>
+                    <span class="text">Sair</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+
+    <section id="content">
+        <nav>
+            <input type="checkbox" id="theme-switch" hidden>
+                <label for="theme-switch" class="theme-toggle" title="Alternar Tema">
+                    <i class='bx bx-moon'></i>
+                    <i class='bx bx-sun'></i>
+                </label>
+            <i class='bx bx-menu' id="menu-toggler"></i>
+            <a href="#" class="nav-link">Categorias</a>
+            <form action="#" id="searchForm">
+                <div class="form-input">
+                    <input type="search" placeholder="Buscar no sistema..." id="searchInput"> 
+                    <button type="submit" class="search-btn" id="searchButton">
+                        <i class='bx bx-search' id="searchIcon"></i>
+                    </button>
+                </div>
+            </form>
+
+            <a href="profile.html" class="profile">
+                </a>
+        </nav>
+
+        <main>
+            <div class="title">
+                <div class="left">
+                    <h1>Categorias</h1>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="dashboard.html">Dashboard</a>
+                        </li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li>
+                            <a class="active" href="#">Categorias</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="categorias-container">
+                <div class="form-card">
+                    <h2 id="formTitle">Adicionar Categoria</h2> 
+                    
+                    <form id="categoriaForm">
+                        <input type="hidden" id="categoria-id" name="id" value=""> 
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="categoria-nome">Nome:</label>
+                                <input type="text" id="categoria-nome" name="nome" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="categoria-tipo">Tipo:</label>
+                                <select id="categoria-tipo" name="tipo" required>
+                                    <option value="">Selecione</option>
+                                    <option value="receita">Receita</option>
+                                    <option value="despesa">Despesa</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label>Selecione um Ícone:</label>
+                                <div class="icones-grid" id="iconesGrid">
+                                    <button type="button" class="icone-btn" data-icone="bxs-wallet" title="Carteira">
+                                        <i class='bx bxs-wallet'></i>
+                                    </button>
+                                    <button type="button" class="icone-btn" data-icone="bxs-shopping-bag" title="Compras">
+                                        <i class='bx bxs-shopping-bag'></i>
+                                    </button>
+                                    <button type="button" class="icone-btn" data-icone="bxs-food-menu" title="Alimentação">
+                                        <i class='bx bxs-food-menu'></i>
+                                    </button>
+                                    <button type="button" class="icone-btn" data-icone="bxs-car" title="Transporte">
+                                        <i class='bx bxs-car'></i>
+                                    </button>
+                                    <button type="button" class="icone-btn" data-icone="bxs-home" title="Moradia">
+                                        <i class='bx bxs-home'></i>
+                                    </button>
+                                    <button type="button" class="icone-btn" data-icone="bxs-heart" title="Saúde">
+                                        <i class='bx bxs-heart'></i>
+                                    </button>
+                                    <button type="button" class="icone-btn" data-icone="bxs-book" title="Educação">
+                                        <i class='bx bxs-book'></i>
+                                    </button>
+                                    <button type="button" class="icone-btn" data-icone="bxs-game" title="Diversão">
+                                        <i class='bx bxs-game'></i>
+                                    </button>
+                                    <button type="button" class="icone-btn" data-icone="bxs-briefcase" title="Trabalho">
+                                        <i class='bx bxs-briefcase'></i>
+                                    </button>
+                                    <button type="button" class="icone-btn" data-icone="bxs-plane" title="Viagem">
+                                        <i class='bx bxs-plane'></i>
+                                    </button>
+                                    <button type="button" class="icone-btn" data-icone="bx-dumbbell" title="Fitness">
+                                        <i class='bx bx-dumbbell'></i>
+                                    </button>
+                                    <button type="button" class="icone-btn" data-icone="bxs-gift" title="Presentes">
+                                        <i class='bx bxs-gift'></i>
+                                    </button>
+                                </div>
+                                <input type="hidden" id="categoria-icone" name="icone" value="">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="categoria-cor">Cor:</label>
+                                <input type="color" id="categoria-cor" name="cor" value="#3c91e6">
+                            </div>
+                        </div>
+
+                        <div class="form-row full">
+                            <div class="form-group full-width">
+                                <label for="categoria-descricao">Descrição:</label>
+                                <textarea id="categoria-descricao" name="descricao" rows="3"></textarea>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary" id="submitButton">
+                            <i class='bx bx-plus'></i> 
+                            <span id="submitButtonText">Adicionar Categoria</span>
+                        </button>
+                        
+                        <button type="button" class="btn-secondary" id="cancelEditBtn" style="display: none;">
+                            Cancelar Edição
+                        </button>
+                        
+                        <div id="categoriaMessage" class="api-message" style="display: none;"></div>
+                    </form>
+                </div>
+
+                <div class="list-card">
+                    <div class="header-com-busca">
+                        <h2>Minhas Categorias</h2>
+                        <div class="search-box-mini">
+                            <i class='bx bx-search'></i>
+                            <input type="text" id="searchCategoria" placeholder="Filtrar categorias...">
+                        </div>
+                    </div>
+
+                    <div class="categorias-grid" id="categoriasGrid">
+                        <div class="categoria-item-placeholder">
+                            <p>Carregando...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+    
+    <script src="../JS/categorias.js"></script>
+    <script src="../JS/theme.js"></script>
+    
+</body>
+</html>

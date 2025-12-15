@@ -14,9 +14,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-sua-chave-secreta-aqui'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# Para o TCC, pode deixar True. Se fosse um produto real, mudariamos para False.
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+# Permite rodar localmente e no PythonAnywhere
+ALLOWED_HOSTS = ['*', '.pythonanywhere.com']
 
 
 # Application definition
@@ -41,7 +43,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',  # CORS deve vir antes de CommonMiddleware
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -54,7 +56,8 @@ ROOT_URLCONF = 'ga_financas_backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # MUDANÇA 1: Apontando para a pasta templates na raiz
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -109,10 +112,25 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
+# ============================================
+# ARQUIVOS ESTÁTICOS E MÍDIA (CONFIGURAÇÃO DEPLOY)
+# ============================================
 
+# URL usada no navegador para acessar os arquivos
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# MUDANÇA 2: Onde estão seus CSS/JS que você criou (na pasta static da raiz)
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
+# Onde o servidor vai juntar TUDO (Django + seus arquivos) quando rodar collectstatic
+# Mudei o nome para 'staticfiles' para não dar conflito com a pasta acima
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# MUDANÇA 3: Configuração para Upload de Imagens (Avatar)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -122,21 +140,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # ============================================
 
 REST_FRAMEWORK = {
-    # Autenticação padrão
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-    
-    # Permissões padrão - IMPORTANTE: IsAuthenticated por padrão
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
-    
-    # Paginação
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 100,
-    
-    # Filtros
     'DEFAULT_FILTER_BACKENDS': (
         'rest_framework.filters.SearchFilter',
         'rest_framework.filters.OrderingFilter',
@@ -178,15 +189,8 @@ SIMPLE_JWT = {
 # CONFIGURAÇÕES CORS
 # ============================================
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://localhost:8000",
-    "http://127.0.0.1:8000",
-    "http://localhost:5500",
-    "http://127.0.0.1:5500",
-    "file://",
-]
+# Permite que qualquer origem acesse (útil para evitar dor de cabeça na apresentação)
+CORS_ALLOW_ALL_ORIGINS = True 
 
 CORS_ALLOW_CREDENTIALS = True
 
